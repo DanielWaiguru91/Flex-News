@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news_nav_graph"
+    app:startDestination="@id/trendingNewsFragment">
+
+    <fragment
+        android:id="@+id/trendingNewsFragment"
+        android:name="tech.danielwaiguru.flexnews.ui.fragments.TrendingNewsFragment"
+        android:label="TrendingNewsFragment" >
+        <action
+            android:id="@+id/action_trendingNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteNewsFragment"
+        android:name="tech.danielwaiguru.flexnews.ui.fragments.FavoriteNewsFragment"
+        android:label="fragment_favorite_news"
+        tools:layout="@layout/fragment_favorite_news" >
+        <action
+            android:id="@+id/action_favoriteNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="tech.danielwaiguru.flexnews.ui.fragments.ArticleFragment"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_article" />
+    <fragment
+        android:id="@+id/searchNewsFragment"
+        android:name="tech.danielwaiguru.flexnews.ui.fragments.SearchNewsFragment"
+        android:label="fragment_search_news"
+        tools:layout="@layout/fragment_search_news" >
+        <action
+            android:id="@+id/action_searchNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+        <action
+            android:id="@+id/action_searchNewsFragment_to_articleFragment2"
+            app:destination="@id/articleFragment"
+            app:popUpTo="@id/articleFragment" />
+    </fragment>
+</navigation>
