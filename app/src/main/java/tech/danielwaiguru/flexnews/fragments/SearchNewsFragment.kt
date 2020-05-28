@@ -1,4 +1,4 @@
-package tech.danielwaiguru.flexnews.ui.fragments
+package tech.danielwaiguru.flexnews.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
