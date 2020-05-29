@@ -3,7 +3,7 @@ package tech.danielwaiguru.flexnews.api
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
-import tech.danielwaiguru.flexnews.data.NewsResponse
+import tech.danielwaiguru.flexnews.models.NewsResponse
 
 /**
  * Service interface

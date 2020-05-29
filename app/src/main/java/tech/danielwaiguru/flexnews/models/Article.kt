@@ -1,4 +1,4 @@
-package tech.danielwaiguru.flexnews.data
+package tech.danielwaiguru.flexnews.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

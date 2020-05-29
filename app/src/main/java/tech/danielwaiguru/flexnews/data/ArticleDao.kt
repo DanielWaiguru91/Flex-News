@@ -1,8 +1,8 @@
-package tech.danielwaiguru.flexnews.database
+package tech.danielwaiguru.flexnews.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import tech.danielwaiguru.flexnews.data.Article
+import tech.danielwaiguru.flexnews.models.Article
 
 @Dao
 interface ArticleDao {

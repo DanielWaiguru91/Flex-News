@@ -1,6 +1,4 @@
-package tech.danielwaiguru.flexnews.data
-
-import tech.danielwaiguru.flexnews.data.Article
+package tech.danielwaiguru.flexnews.models
 
 data class NewsResponse(
     val status: String,
