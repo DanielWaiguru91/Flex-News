@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import tech.danielwaiguru.flexnews.data.NewsRepository
-import tech.danielwaiguru.flexnews.models.NewsResponse
+import tech.danielwaiguru.flexnews.models.response.NewsResponse
 import tech.danielwaiguru.flexnews.utility.Resource
 
 class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel(){

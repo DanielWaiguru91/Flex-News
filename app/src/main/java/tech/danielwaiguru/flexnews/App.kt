@@ -1,6 +1,7 @@
 package tech.danielwaiguru.flexnews
 
 import android.app.Application
+import tech.danielwaiguru.flexnews.networking.RemoteNewsApi
 import tech.danielwaiguru.flexnews.networking.buildNewsApiService
 
 class App: Application() {
