@@ -13,7 +13,7 @@ interface NewsService {
         const val API_KEY = "10ccffe776b14ac4829aab687f590fee"
         const val BASE_URL = "https://newsapi.org"
     }
-    @GET("/v2/top-headlines")
+    @GET("v2/top-headlines")
     suspend fun trendingNews(
         @Query("country")
         countryCode: String = "ke",
