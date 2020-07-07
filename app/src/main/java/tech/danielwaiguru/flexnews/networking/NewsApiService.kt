@@ -1,4 +1,4 @@
-package tech.danielwaiguru.flexnews.api
+package tech.danielwaiguru.flexnews.networking
 
 import retrofit2.Response
 import retrofit2.http.GET
@@ -8,7 +8,7 @@ import tech.danielwaiguru.flexnews.models.NewsResponse
 /**
  * Service interface
  */
-interface NewsService {
+interface NewsApiService {
     companion object {
         const val API_KEY = "10ccffe776b14ac4829aab687f590fee"
         const val BASE_URL = "https://newsapi.org"

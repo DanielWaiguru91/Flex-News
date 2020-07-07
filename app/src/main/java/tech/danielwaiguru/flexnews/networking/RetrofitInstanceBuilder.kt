@@ -1,9 +1,9 @@
-package tech.danielwaiguru.flexnews.api
+package tech.danielwaiguru.flexnews.networking
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import tech.danielwaiguru.flexnews.api.NewsService.Companion.BASE_URL
+import tech.danielwaiguru.flexnews.networking.NewsApiService.Companion.BASE_URL
 
 /*
 object RetrofitInstance {
@@ -32,3 +32,5 @@ fun buildRetrofit(): Retrofit {
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 }
+fun buildNewsApiService(): NewsApiService =
+    buildRetrofit().create(NewsApiService::class.java)
