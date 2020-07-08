@@ -7,8 +7,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import tech.danielwaiguru.flexnews.R
-import tech.danielwaiguru.flexnews.data.ArticleDao
-import tech.danielwaiguru.flexnews.data.ArticleDatabase
 import tech.danielwaiguru.flexnews.data.NewsRepository
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        newsRepository = NewsRepository(ArticleDatabase(this))
+        newsRepository = NewsRepository()
         viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository)
         newsViewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
         bottomNavigationView.setupWithNavController(newsNavHostFragment.findNavController())
