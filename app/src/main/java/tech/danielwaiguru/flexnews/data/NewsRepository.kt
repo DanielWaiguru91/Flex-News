@@ -1,8 +1,10 @@
 package tech.danielwaiguru.flexnews.data
 
-import tech.danielwaiguru.flexnews.App
+import tech.danielwaiguru.flexnews.networking.BuildNewsApiService
 
 
-class NewsRepository {
-    private val remoteNewsApi = App.remoteNewsApi
+class NewsRepository() {
+    private val remoteNewsApi = BuildNewsApiService.newsApi
+    suspend fun trendingNews(countryCode: String, pageNum: Int) =
+        remoteNewsApi.trendingNews(countryCode, pageNum)
 }

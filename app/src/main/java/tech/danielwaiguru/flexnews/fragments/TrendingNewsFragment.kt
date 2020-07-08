@@ -5,17 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_search_news.*
 import kotlinx.android.synthetic.main.fragment_trending_news.*
 import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.adapters.NewsAdapter
 import tech.danielwaiguru.flexnews.ui.MainActivity
 import tech.danielwaiguru.flexnews.ui.NewsViewModel
-import tech.danielwaiguru.flexnews.utility.Resource
+import tech.danielwaiguru.flexnews.utility.Result
 
 class TrendingNewsFragment : Fragment(){
     private lateinit var viewModel: NewsViewModel
@@ -35,16 +33,16 @@ class TrendingNewsFragment : Fragment(){
         setData()
         viewModel.trendingNews.observe(viewLifecycleOwner, Observer { it ->
             when(it){
-                is Resource.Success ->{
+                is Result.Success ->{
                     hideProgressBar()
                     it.data?.let {
                         newsAdapter.articleDifference.submitList(it.articles)
                     }
                 }
-                is Resource.Loading ->{
+                is Result.Loading ->{
                     showProgressBar()
                 }
-                is Resource.Error ->{
+                is Result.Failure ->{
                     hideProgressBar()
                     Log.e("Trending News Fragment", "Error occurred ")
                 }
