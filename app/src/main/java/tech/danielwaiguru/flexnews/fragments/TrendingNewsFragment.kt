@@ -31,11 +31,11 @@ class TrendingNewsFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).newsViewModel
         setData()
-        viewModel.trendingNews.observe(viewLifecycleOwner, Observer { it ->
-            when(it){
+        viewModel.trendingNews.observe(viewLifecycleOwner, Observer { response ->
+            when(response){
                 is Result.Success ->{
                     hideProgressBar()
-                    it.data?.let {
+                    response.data?.let {
                         newsAdapter.articleDifference.submitList(it.articles)
                     }
                 }

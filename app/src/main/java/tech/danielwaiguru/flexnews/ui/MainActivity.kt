@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         newsRepository = NewsRepository()
-        viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository)
+        viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository, application)
         newsViewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
         bottomNavigationView.setupWithNavController(newsNavHostFragment.findNavController())
     }

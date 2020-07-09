@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "tech.danielwaiguru.flexnews"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -62,7 +62,6 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:2.2.5"
     kapt "androidx.room:room-compiler:2.2.5"
-    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     kapt "android.arch.persistence.room:compiler:$room_version"
     //room testing
     testImplementation "androidx.room:room-testing:$room_version"
