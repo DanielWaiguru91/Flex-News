@@ -7,4 +7,6 @@
     <string name="dialogMessage">Please check your internet connection and try again.</string>
     <string name="retryButton">Retry</string>
     <string name="cancelButton">Cancel</string>
+    <string name="news">News</string>
+    <string name="flex">Flex</string>
 </resources>
