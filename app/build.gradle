@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'kotlinx-serialization'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -84,6 +85,7 @@ dependencies {
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     //implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.4.0"
 
     //Okhttp
     implementation "com.squareup.okhttp3:okhttp:4.7.2"

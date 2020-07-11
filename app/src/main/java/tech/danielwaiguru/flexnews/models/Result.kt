@@ -1,4 +1,4 @@
-package tech.danielwaiguru.flexnews.utility
+package tech.danielwaiguru.flexnews.models
 
 sealed class Result<T>(
     val data: T? = null,

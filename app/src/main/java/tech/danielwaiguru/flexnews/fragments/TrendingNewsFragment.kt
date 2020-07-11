@@ -13,7 +13,7 @@ import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.adapters.NewsAdapter
 import tech.danielwaiguru.flexnews.ui.MainActivity
 import tech.danielwaiguru.flexnews.ui.NewsViewModel
-import tech.danielwaiguru.flexnews.utility.Result
+import tech.danielwaiguru.flexnews.models.Result
 
 class TrendingNewsFragment : Fragment(){
     private lateinit var viewModel: NewsViewModel
