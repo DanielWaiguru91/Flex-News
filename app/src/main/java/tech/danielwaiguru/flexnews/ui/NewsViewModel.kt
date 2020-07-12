@@ -19,6 +19,8 @@ class NewsViewModel(private val newsRepository: NewsRepository, application: App
     }
     val trendingNews: MutableLiveData<Result<NewsResponse>> = MutableLiveData()
     private val page = 1
+    val searchedNews: MutableLiveData<Result<NewsResponse>> = MutableLiveData()
+    private val searchPage = 1
     init {
         getTrendingNews("us")
     }
@@ -35,6 +37,20 @@ class NewsViewModel(private val newsRepository: NewsRepository, application: App
                return Result.Success(it)
            }
        }
+        return Result.Failure(response.message())
+    }
+    private fun searchNews(searchTerm: String) = viewModelScope.launch {
+        networkStatusChecker.performIfConnectedToInternet {
+            val response = newsRepository.searchNews(searchTerm, searchPage)
+            searchedNews.postValue(searchedArticle(response))
+        }
+    }
+    private fun searchedArticle(response: Response<NewsResponse>): Result<NewsResponse>{
+        if (response.isSuccessful){
+            response.body()?.let {
+                return Result.Success(it)
+            }
+        }
         return Result.Failure(response.message())
     }
 }
