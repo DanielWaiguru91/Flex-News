@@ -1,4 +1,4 @@
-package tech.danielwaiguru.flexnews.ui
+package tech.danielwaiguru.flexnews.viewmodels
 
 import android.app.Application
 import android.net.ConnectivityManager

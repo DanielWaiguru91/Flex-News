@@ -1,4 +1,4 @@
-package tech.danielwaiguru.flexnews.fragments
+package tech.danielwaiguru.flexnews.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -13,8 +13,8 @@ import kotlinx.android.synthetic.main.fragment_trending_news.*
 import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.adapters.NewsAdapter
 import tech.danielwaiguru.flexnews.models.Result
-import tech.danielwaiguru.flexnews.ui.MainActivity
-import tech.danielwaiguru.flexnews.ui.NewsViewModel
+import tech.danielwaiguru.flexnews.ui.main.MainActivity
+import tech.danielwaiguru.flexnews.viewmodels.NewsViewModel
 
 class TrendingNewsFragment : Fragment(){
     private lateinit var viewModel: NewsViewModel
