@@ -41,7 +41,6 @@ android {
 
 dependencies {
     def room_version = "2.2.5"
-    def version_moshi = "1.9.3"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -84,7 +83,6 @@ dependencies {
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    //implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
     implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.4.0"
 
     //Okhttp

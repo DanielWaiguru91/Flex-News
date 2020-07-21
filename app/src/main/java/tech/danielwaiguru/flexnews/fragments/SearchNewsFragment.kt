@@ -40,7 +40,7 @@ class SearchNewsFragment : Fragment() {
                 delay(300L)
                 editable?.let {
                     if (it.toString().isNotEmpty()){
-                        
+
                     }
                 }
             }
