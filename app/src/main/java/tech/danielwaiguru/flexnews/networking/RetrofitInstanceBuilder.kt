@@ -19,15 +19,15 @@ private val buildClient: OkHttpClient =
 /**
  *Retrofit client factory
  */
-fun buildRetrofit(): Retrofit{
+private fun buildRetrofit(): Retrofit{
     return Retrofit.Builder()
         .client(buildClient)
         .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 }
-object BuildNewsApiService {
-    val newsApi: NewsApiService by lazy {
-        buildRetrofit().create(NewsApiService::class.java)
-    }
-}
+/**
+ * NewsApiService builder
+ */
+fun buildNewsApiService(): NewsApiService =
+    buildRetrofit().create(NewsApiService::class.java)

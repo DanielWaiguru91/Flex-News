@@ -2,7 +2,9 @@ package tech.danielwaiguru.flexnews.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(tableName = "articles")
 data class Article(
     @PrimaryKey(autoGenerate = true)
