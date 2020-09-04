@@ -1,4 +1,4 @@
-package tech.danielwaiguru.flexnews.data
+package tech.danielwaiguru.flexnews.database
 
 import android.content.Context
 import androidx.room.Database

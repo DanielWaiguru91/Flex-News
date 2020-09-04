@@ -42,6 +42,11 @@ android {
 
 dependencies {
     def room_version = "2.2.5"
+    def retrofit_version = "2.9.0"
+    def moshi_version = "2.9.0"
+    def glide_version = "4.11.0"
+    def logging_version = "4.5.0"
+    def okhttp_version = "4.7.2"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -80,16 +85,12 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
 
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.4.0"
-
-    //Okhttp
-    implementation "com.squareup.okhttp3:okhttp:4.7.2"
-
-    //logging interceptor
-    implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
-
+    //OkHtttp
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    //Moshi converter
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_version"
+    //Logging interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_version"
 
     // Navigation Components
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"

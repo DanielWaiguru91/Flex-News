@@ -1,11 +1,11 @@
 package tech.danielwaiguru.flexnews.networking
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.json.Json
+
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import tech.danielwaiguru.flexnews.networking.NewsApiService.Companion.BASE_URL
 
 /**
@@ -26,7 +26,7 @@ private fun buildRetrofit(): Retrofit{
     return Retrofit.Builder()
         .client(buildClient)
         .baseUrl(BASE_URL)
-        .addConverterFactory(Json.asConverterFactory(contentTypes))
+        .addConverterFactory(MoshiConverterFactory.create())
         .build()
 }
 /**

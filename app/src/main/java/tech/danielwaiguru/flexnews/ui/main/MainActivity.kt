@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import tech.danielwaiguru.flexnews.R
-import tech.danielwaiguru.flexnews.data.NewsRepository
+import tech.danielwaiguru.flexnews.repositories.NewsRepository
 import tech.danielwaiguru.flexnews.viewmodels.NewsViewModel
 
 class MainActivity : AppCompatActivity() {

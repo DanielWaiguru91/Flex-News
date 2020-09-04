@@ -2,13 +2,15 @@ package tech.danielwaiguru.flexnews.networking
 
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Build
-import androidx.annotation.RequiresApi
 
 class NetworkStatusChecker(private val connectivityManager: ConnectivityManager?) {
-    inline fun performIfConnectedToInternet(action: ()->Unit){
+    inline fun performIfConnectedToInternet(hasNoInternetConnection: () -> Unit,action: ()->Unit){
         if (hasInternetConnection()){
             action()
+        }
+        else
+        {
+            hasNoInternetConnection()
         }
     }
 

@@ -14,7 +14,7 @@ interface NewsApiService {
         const val API_KEY = BuildConfig.key
         const val BASE_URL = "https://newsapi.org"
     }
-    @GET("v2/top-headlines")
+    @GET("/v2/top-headlines")
     suspend fun trendingNews(
         @Query("country")
         countryCode: String = "us",

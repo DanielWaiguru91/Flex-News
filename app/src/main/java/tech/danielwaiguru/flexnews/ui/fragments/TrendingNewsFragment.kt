@@ -78,7 +78,7 @@ class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
     }
     private fun getAllNews(){
         PaginationProgressBar.visible()
-        networkStatusChecker.performIfConnectedToInternet {
+        networkStatusChecker.performIfConnectedToInternet(::hasNoInternetConnection) {
             lifecycleScope.launch(Dispatchers.Main) {
                 val result = remoteNewsApi.getTrendingNews()
                 if (result is Success){
@@ -89,6 +89,11 @@ class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
                     onGetArticlesFailed()
                 }
             }
+        }
+    }
+    private fun hasNoInternetConnection(){
+        view?.let {
+            requireActivity().toast("No connection")
         }
     }
     private fun onGetArticlesFailed(){

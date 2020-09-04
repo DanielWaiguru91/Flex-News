@@ -11,7 +11,6 @@ class RemoteNewsApi (private val newsApiService: NewsApiService){
         Success(response)
     }
     catch (error: Throwable){
-        
         Failure(error)
     }
 }
