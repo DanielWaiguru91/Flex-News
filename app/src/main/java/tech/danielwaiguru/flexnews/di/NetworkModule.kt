@@ -10,6 +10,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import tech.danielwaiguru.flexnews.networking.NewsApiService
+import tech.danielwaiguru.flexnews.networking.RemoteNewsApi
 import javax.inject.Singleton
 
 @Module
@@ -39,4 +40,8 @@ object NetworkModule {
     @Provides
     fun providenewsApiService(retrofit: Retrofit): NewsApiService =
         retrofit.create(NewsApiService::class.java)
+    @Singleton
+    @Provides
+    fun provideRemoteApi(apiService: NewsApiService): RemoteNewsApi =
+        RemoteNewsApi(apiService)
 }

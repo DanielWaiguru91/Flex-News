@@ -6,7 +6,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import tech.danielwaiguru.flexnews.networking.NewsApiService.Companion.BASE_URL
 
 /**
  * Build instance of OkHttpClient
@@ -25,7 +24,7 @@ private fun buildRetrofit(): Retrofit{
     val contentTypes = "application/json".toMediaType()
     return Retrofit.Builder()
         .client(buildClient)
-        .baseUrl(BASE_URL)
+        //.baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 }
