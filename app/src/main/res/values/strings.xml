@@ -9,4 +9,5 @@
     <string name="cancelButton">Cancel</string>
     <string name="news">News</string>
     <string name="flex">Flex</string>
+    <string name="noDataTxt">No news!! Swipe down to refresh</string>
 </resources>
