@@ -14,8 +14,6 @@ import tech.danielwaiguru.flexnews.viewmodels.NewsViewModel
  * A simple [Fragment] subclass.
  */
 class FavoriteNewsFragment : Fragment() {
-
-    private lateinit var viewModel: NewsViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,8 +22,4 @@ class FavoriteNewsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_favorite_news, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as MainActivity).newsViewModel
-    }
 }

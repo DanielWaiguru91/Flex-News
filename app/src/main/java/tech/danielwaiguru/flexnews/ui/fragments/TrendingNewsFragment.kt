@@ -8,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_trending_news.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,14 +27,12 @@ import tech.danielwaiguru.flexnews.utils.gone
 import tech.danielwaiguru.flexnews.utils.toast
 import tech.danielwaiguru.flexnews.utils.visible
 import tech.danielwaiguru.flexnews.viewmodels.NewsViewModel
-
+@AndroidEntryPoint
 class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
-    private lateinit var viewModel: NewsViewModel
-    //private lateinit var newsAdapter: NewsAdapter
+    private val viewModel: NewsViewModel by viewModels()
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))
     }
-    private val remoteNewsApi  by lazy { App.remoteNewsApi }
     private val newsAdapter by lazy {
         NewsAdapter(this)
     }
@@ -46,8 +47,11 @@ class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as MainActivity).newsViewModel
         setUpRecyclerView()
+        getAllNews()
+        viewModel.trendingNews.observe(viewLifecycleOwner, Observer {
+            onArticleListReceived(it)
+        })
     }
 
     private fun setUpRecyclerView(){
@@ -55,49 +59,22 @@ class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)
         }
-        getAllNews()
-    }
-    private fun noInternetConnectionDialog(){
-        val dialogTitle = getString(R.string.dialogTitle)
-        val dialogMessage = getString(R.string.dialogMessage)
-        val positiveButton = getString(R.string.retryButton)
-        val negativeButton = getString(R.string.cancelButton)
-        activity?.let {
-            val networkDialog = AlertDialog.Builder(it)
-            networkDialog.setTitle(dialogTitle)
-            networkDialog.setMessage(dialogMessage)
-            networkDialog.setIcon(R.drawable.ic_warning)
-            networkDialog.setPositiveButton(positiveButton) { _, _ ->  }
-            networkDialog.setNegativeButton(negativeButton) { dialog, _ ->
-                dialog.dismiss()
-                activity?.finish()
-            }
-            networkDialog.create().show()
-        }
 
     }
     private fun getAllNews(){
         PaginationProgressBar.visible()
         networkStatusChecker.performIfConnectedToInternet(::hasNoInternetConnection) {
-            lifecycleScope.launch(Dispatchers.Main) {
-                val result = remoteNewsApi.getTrendingNews()
-                if (result is Success){
-                    Log.d("API", "${result.data}")
-                    onArticleListReceived(result.data)
-                }
-                else{
-                    onGetArticlesFailed()
-                }
-            }
+            viewModel.fetchTrendingNews()
         }
     }
     private fun hasNoInternetConnection(){
         view?.let {
             requireActivity().toast("No connection")
+            PaginationProgressBar.gone()
         }
     }
     private fun onGetArticlesFailed(){
-        PaginationProgressBar.gone()
+
         activity?.toast("News fetch failed")
     }
     private fun onArticleListReceived(articles: List<Article>){

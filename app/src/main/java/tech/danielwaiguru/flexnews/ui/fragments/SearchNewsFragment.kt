@@ -21,7 +21,6 @@ import tech.danielwaiguru.flexnews.viewmodels.NewsViewModel
  */
 class SearchNewsFragment : Fragment() {
 
-    private lateinit var viewModel: NewsViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +31,6 @@ class SearchNewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as MainActivity).newsViewModel
         var job :Job? = null
         etSearch.addTextChangedListener {editable ->
             job?.cancel()

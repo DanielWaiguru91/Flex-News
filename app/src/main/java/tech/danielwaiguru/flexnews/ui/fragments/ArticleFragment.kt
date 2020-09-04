@@ -12,7 +12,6 @@ import tech.danielwaiguru.flexnews.viewmodels.NewsViewModel
  * A simple [Fragment] subclass.
  */
 class ArticleFragment : Fragment() {
-    private lateinit var viewModel: NewsViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

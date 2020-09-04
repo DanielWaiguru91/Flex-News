@@ -1,21 +1,35 @@
 package tech.danielwaiguru.flexnews.viewmodels
 
-import android.app.Application
-import android.net.ConnectivityManager
-import androidx.lifecycle.AndroidViewModel
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import tech.danielwaiguru.flexnews.models.Article
+import tech.danielwaiguru.flexnews.models.Failure
+import tech.danielwaiguru.flexnews.models.Success
 import tech.danielwaiguru.flexnews.repositories.NewsRepository
-import tech.danielwaiguru.flexnews.models.response.NewsResponse
-import tech.danielwaiguru.flexnews.networking.NetworkStatusChecker
-import tech.danielwaiguru.flexnews.models.Result
 
-class NewsViewModel(private val newsRepository: NewsRepository, application: Application) :
-    AndroidViewModel(application){
-    private val networkStatusChecker by lazy {
-        NetworkStatusChecker(application.getSystemService(ConnectivityManager::class.java)!!)
+class NewsViewModel @ViewModelInject constructor(private val newsRepository: NewsRepository) : ViewModel(){
+    private val _trendingNews: MutableLiveData<List<Article>> = MutableLiveData()
+    val trendingNews: LiveData<List<Article>>
+    get() = _trendingNews
+    private val _toast: MutableLiveData<String?> = MutableLiveData()
+    val toast : LiveData<String?>
+    get() = _toast
+    var currentPage = 1
+    fun fetchTrendingNews() = viewModelScope.launch {
+        val result = newsRepository.getTrendingNews(currentPage)
+        currentPage ++
+        when (result) {
+            is Success ->{
+                _trendingNews.value = result.data
+            }
+            is Failure -> {
+                _toast.value = result.error.toString()
+            }
+        }
+
     }
-    val trendingNews: MutableLiveData<Result<NewsResponse>> = MutableLiveData()
-    private val page = 1
-    val searchedNews: MutableLiveData<Result<NewsResponse>> = MutableLiveData()
-
 }

@@ -12,14 +12,13 @@ import tech.danielwaiguru.flexnews.models.response.NewsResponse
 interface NewsApiService {
     companion object {
         const val API_KEY = BuildConfig.key
-        const val BASE_URL = "https://newsapi.org"
     }
     @GET("/v2/top-headlines")
     suspend fun trendingNews(
         @Query("country")
         countryCode: String = "us",
         @Query("page")
-        pageNum: Int = 1,
+        pageNum: Int,
         @Query("apiKey")
         apiKey: String = API_KEY
     ):NewsResponse

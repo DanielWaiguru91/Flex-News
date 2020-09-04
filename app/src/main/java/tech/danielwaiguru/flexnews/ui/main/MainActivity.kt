@@ -5,28 +5,16 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.repositories.NewsRepository
 import tech.danielwaiguru.flexnews.viewmodels.NewsViewModel
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    lateinit var newsViewModel: NewsViewModel
-    private lateinit var viewModelProviderFactory: NewsViewModelProviderFactory
-    private lateinit var newsRepository: NewsRepository
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        newsRepository = NewsRepository()
-        viewModelProviderFactory =
-            NewsViewModelProviderFactory(
-                newsRepository,
-                application
-            )
-        newsViewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
         bottomNavigationView.setupWithNavController(newsNavHostFragment.findNavController())
     }
 }
