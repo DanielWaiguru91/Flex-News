@@ -1,4 +1,4 @@
-package tech.danielwaiguru.flexnews.fragments
+package tech.danielwaiguru.flexnews.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import tech.danielwaiguru.flexnews.R
-import tech.danielwaiguru.flexnews.ui.NewsViewModel
+import tech.danielwaiguru.flexnews.viewmodels.NewsViewModel
 
 /**
  * A simple [Fragment] subclass.
  */
 class ArticleFragment : Fragment() {
-    private lateinit var viewModel: NewsViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

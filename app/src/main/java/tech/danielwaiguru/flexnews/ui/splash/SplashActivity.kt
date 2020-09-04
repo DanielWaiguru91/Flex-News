@@ -1,10 +1,11 @@
-package tech.danielwaiguru.flexnews.ui
+package tech.danielwaiguru.flexnews.ui.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import tech.danielwaiguru.flexnews.R
+import tech.danielwaiguru.flexnews.ui.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

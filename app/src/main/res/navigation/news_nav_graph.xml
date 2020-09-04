@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/trendingNewsFragment"
-        android:name="tech.danielwaiguru.flexnews.fragments.TrendingNewsFragment"
+        android:name="tech.danielwaiguru.flexnews.ui.fragments.TrendingNewsFragment"
         android:label="TrendingNewsFragment" >
         <action
             android:id="@+id/action_trendingNewsFragment_to_articleFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteNewsFragment"
-        android:name="tech.danielwaiguru.flexnews.fragments.FavoriteNewsFragment"
+        android:name="tech.danielwaiguru.flexnews.ui.fragments.FavoriteNewsFragment"
         android:label="fragment_favorite_news"
         tools:layout="@layout/fragment_favorite_news" >
         <action
@@ -24,12 +24,12 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="tech.danielwaiguru.flexnews.fragments.ArticleFragment"
+        android:name="tech.danielwaiguru.flexnews.ui.fragments.ArticleFragment"
         android:label="fragment_article"
         tools:layout="@layout/fragment_article" />
     <fragment
         android:id="@+id/searchNewsFragment"
-        android:name="tech.danielwaiguru.flexnews.fragments.SearchNewsFragment"
+        android:name="tech.danielwaiguru.flexnews.ui.fragments.SearchNewsFragment"
         android:label="fragment_search_news"
         tools:layout="@layout/fragment_search_news" >
         <action
