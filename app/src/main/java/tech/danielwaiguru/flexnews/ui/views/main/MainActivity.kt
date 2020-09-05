@@ -1,4 +1,4 @@
-package tech.danielwaiguru.flexnews.ui.main
+package tech.danielwaiguru.flexnews.ui.views.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package tech.danielwaiguru.flexnews.ui.fragments
+package tech.danielwaiguru.flexnews.ui.views.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,10 +11,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
 import tech.danielwaiguru.flexnews.R
-import tech.danielwaiguru.flexnews.ui.main.MainActivity
-import tech.danielwaiguru.flexnews.viewmodels.NewsViewModel
+
 
 /**
  * A simple [Fragment] subclass.
