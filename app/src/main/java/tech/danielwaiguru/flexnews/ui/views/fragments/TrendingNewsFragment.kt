@@ -1,28 +1,20 @@
-package tech.danielwaiguru.flexnews.ui.fragments
+package tech.danielwaiguru.flexnews.ui.views.fragments
 
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_trending_news.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import tech.danielwaiguru.flexnews.App
 import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.adapters.NewsAdapter
 import tech.danielwaiguru.flexnews.models.Article
-import tech.danielwaiguru.flexnews.models.Success
 import tech.danielwaiguru.flexnews.networking.NetworkStatusChecker
-import tech.danielwaiguru.flexnews.ui.main.MainActivity
 import tech.danielwaiguru.flexnews.utils.gone
 import tech.danielwaiguru.flexnews.utils.toast
 import tech.danielwaiguru.flexnews.utils.visible
@@ -52,6 +44,11 @@ class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
         viewModel.trendingNews.observe(viewLifecycleOwner, Observer {
             onArticleListReceived(it)
         })
+        viewModel.toast.observe(viewLifecycleOwner, Observer {
+            if (it != null){
+                requireActivity().toast(it)
+            }
+        })
     }
 
     private fun setUpRecyclerView(){
@@ -72,10 +69,6 @@ class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
             requireActivity().toast("No connection")
             PaginationProgressBar.gone()
         }
-    }
-    private fun onGetArticlesFailed(){
-
-        activity?.toast("News fetch failed")
     }
     private fun onArticleListReceived(articles: List<Article>){
         PaginationProgressBar.gone()

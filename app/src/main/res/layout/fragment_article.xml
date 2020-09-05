@@ -25,5 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:clickable="true"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_baseline" />
+        android:src="@drawable/ic_baseline"
+        android:tint="@color/colorWhite"
+        android:focusable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
