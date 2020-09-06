@@ -14,7 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_trending_news.*
 import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.adapters.NewsAdapter
-import tech.danielwaiguru.flexnews.common.Constants.ARTICLE_URL
 import tech.danielwaiguru.flexnews.models.Article
 import tech.danielwaiguru.flexnews.networking.NetworkStatusChecker
 import tech.danielwaiguru.flexnews.utils.gone
@@ -86,10 +85,10 @@ class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
     }
 
     override fun onArticleClicked(article: Article) {
-        val bundle = Bundle().apply {
-            putParcelable(ARTICLE_URL, article)
+        view?.let {
+            val action = TrendingNewsFragmentDirections
+                .actionTrendingNewsFragmentToArticleFragment(article)
+            it.findNavController().navigate(action)
         }
-        view?.findNavController()
-            ?.navigate(R.id.action_trendingNewsFragment_to_articleFragment, bundle)
     }
 }

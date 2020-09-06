@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_article.*
 import tech.danielwaiguru.flexnews.R
 
 class ArticleFragment : Fragment() {
-    private val args: ArticleFragmentArgs by navArgs()
+    //private val args: ArticleFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,10 +24,12 @@ class ArticleFragment : Fragment() {
         loadArticle()
     }
     private fun loadArticle(){
-        val article = args.article
-        webView.apply {
-            webViewClient = WebViewClient()
-            loadUrl(article.url)
+        arguments?.let {
+            val article = ArticleFragmentArgs.fromBundle(it).article
+                webView.apply {
+                    webViewClient = WebViewClient()
+                    loadUrl(article.url)
+                }
         }
     }
 }
