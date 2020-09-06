@@ -1,6 +1,5 @@
 package tech.danielwaiguru.flexnews.networking
 
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 import tech.danielwaiguru.flexnews.BuildConfig
@@ -29,10 +28,10 @@ interface NewsApiService {
     @GET("/v2/everything")
     suspend fun searchNews(
         @Query("q")
-        queryEveryThing :String,
+        query :String,
         @Query("page")
         pageNum: Int = 1,
         @Query("api_key")
         api_key: String = API_KEY
-    ): Response<NewsResponse>
+    ): NewsResponse
 }
