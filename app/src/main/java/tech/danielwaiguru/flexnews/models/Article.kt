@@ -1,14 +1,17 @@
 package tech.danielwaiguru.flexnews.models
 
+import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import kotlinx.android.parcel.Parcelize
 import tech.danielwaiguru.flexnews.database.Converters
 import java.io.Serializable
 
 @Entity(tableName = "articles")
 @TypeConverters(Converters::class)
+@Parcelize
 data class Article(
     @PrimaryKey(autoGenerate = true)
     var articleId: Int? = null,
@@ -21,4 +24,4 @@ data class Article(
     val title: String,
     val url: String,
     val urlToImage: String
-): Serializable
+): Parcelable

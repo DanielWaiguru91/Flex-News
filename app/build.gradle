@@ -42,9 +42,7 @@ android {
 
 dependencies {
     def room_version = "2.2.5"
-    def retrofit_version = "2.9.0"
     def moshi_version = "2.9.0"
-    def glide_version = "4.11.0"
     def logging_version = "4.5.0"
     def okhttp_version = "4.7.2"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -95,6 +93,7 @@ dependencies {
     // Navigation Components
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
+
 
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
