@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_trending_news.*
@@ -19,6 +20,7 @@ import tech.danielwaiguru.flexnews.utils.gone
 import tech.danielwaiguru.flexnews.utils.toast
 import tech.danielwaiguru.flexnews.utils.visible
 import tech.danielwaiguru.flexnews.viewmodels.NewsViewModel
+
 @AndroidEntryPoint
 class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
     private val viewModel: NewsViewModel by viewModels()
@@ -83,6 +85,10 @@ class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
     }
 
     override fun onArticleClicked(article: Article) {
-        activity?.toast("Article ${article.title} clicked")
+        view?.let {
+            val action = TrendingNewsFragmentDirections
+                .actionTrendingNewsFragmentToArticleFragment(article)
+            it.findNavController().navigate(action)
+        }
     }
 }

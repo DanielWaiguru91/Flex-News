@@ -1,5 +1,6 @@
 package tech.danielwaiguru.flexnews.networking
 
+import android.util.Log
 import tech.danielwaiguru.flexnews.models.Article
 import tech.danielwaiguru.flexnews.models.Failure
 import tech.danielwaiguru.flexnews.models.Result
@@ -11,6 +12,7 @@ class RemoteNewsApi (private val newsApiService: NewsApiService){
         Success(response)
     }
     catch (error: Throwable){
-        Failure(error)
+        Log.d("api", error.toString())
+        Failure("Server error encountered")
     }
 }

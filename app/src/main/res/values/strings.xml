@@ -10,4 +10,8 @@
     <string name="news">News</string>
     <string name="flex">Flex</string>
     <string name="noDataTxt">No news!! Swipe down to refresh</string>
+    <string name="search">Search...</string>
+    <string name="discover">Discover</string>
+    <string name="search_title">Search</string>
+    <string name="favorite">Favorite</string>
 </resources>
