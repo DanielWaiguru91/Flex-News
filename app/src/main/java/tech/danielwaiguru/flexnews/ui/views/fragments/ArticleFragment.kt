@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_article.*
 import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.ui.viewmodels.FavoriteNewsViewModel
-
+@AndroidEntryPoint
 class ArticleFragment : Fragment() {
     private val favoriteNewsViewModel: FavoriteNewsViewModel by viewModels()
     override fun onCreateView(

@@ -7,10 +7,10 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
 import tech.danielwaiguru.flexnews.models.Article
-import tech.danielwaiguru.flexnews.repositories.NewsSearchRepository
+import tech.danielwaiguru.flexnews.repositories.NewsRepository
 
 class SearchNewsViewModel
-@ViewModelInject constructor(private val repository: NewsSearchRepository): ViewModel() {
+@ViewModelInject constructor(private val repository: NewsRepository): ViewModel() {
     private var currentQueryValue : String? = null
     private var currentSearchResult: Flow<PagingData<Article>>? = null
     fun searchNews(query: String): Flow<PagingData<Article>>{

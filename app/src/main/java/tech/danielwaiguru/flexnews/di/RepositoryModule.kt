@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import tech.danielwaiguru.flexnews.database.ArticleDao
 import tech.danielwaiguru.flexnews.networking.RemoteNewsApi
 import tech.danielwaiguru.flexnews.repositories.NewsRepository
 import javax.inject.Singleton
@@ -13,6 +14,6 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Singleton
     @Provides
-    fun provideRepository(remoteNewsApi: RemoteNewsApi): NewsRepository =
-        NewsRepository(remoteNewsApi)
+    fun provideRepository(remoteNewsApi: RemoteNewsApi, articleDao: ArticleDao): NewsRepository =
+        NewsRepository(remoteNewsApi, articleDao)
 }

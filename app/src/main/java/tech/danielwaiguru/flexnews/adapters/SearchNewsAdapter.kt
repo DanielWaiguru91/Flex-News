@@ -17,7 +17,7 @@ class SearchNewsAdapter: PagingDataAdapter<Article, SearchNewsAdapter.SearchView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        SearchViewHolder(
+        return SearchViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.article_item,
                 parent,
