@@ -12,6 +12,7 @@ import tech.danielwaiguru.flexnews.networking.RemoteNewsApi
 
 class NewsRepository(
     private val remoteNewsApi: RemoteNewsApi, private val localDataSource: ArticleDao) {
+    fun getFavArticles() = localDataSource.getNewsArticles()
     suspend fun getTrendingNews(pageNumber: Int)  = remoteNewsApi.getTrendingNews(pageNumber)
     suspend fun saveArticle(article: Article) = localDataSource.insertNewsArticle(article)
     fun searchNews(query: String): Flow<PagingData<Article>> {

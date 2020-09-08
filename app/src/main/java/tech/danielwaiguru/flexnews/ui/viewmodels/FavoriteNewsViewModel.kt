@@ -13,4 +13,5 @@ class FavoriteNewsViewModel @ViewModelInject constructor(
     fun saveArticle(article: Article) = viewModelScope.launch {
         newsRepository.saveArticle(article)
     }
+    val favArticles = newsRepository.getFavArticles()
 }
