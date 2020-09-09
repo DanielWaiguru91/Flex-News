@@ -1,8 +1,6 @@
 package tech.danielwaiguru.flexnews.database
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import tech.danielwaiguru.flexnews.models.Article
@@ -11,7 +9,7 @@ import tech.danielwaiguru.flexnews.models.Article
 @Database(entities = [Article::class], version = 1, exportSchema = false)
 abstract class ArticleDatabase : RoomDatabase(){
     abstract fun getArticleDao(): ArticleDao
-
+/*
     companion object{
         @Volatile
         private var INSTANCE: ArticleDatabase? = null
@@ -19,9 +17,9 @@ abstract class ArticleDatabase : RoomDatabase(){
 
         operator fun invoke(context: Context) = INSTANCE ?: synchronized(LOCK)
         {
-            /**
+            *//**
              * Not accessible by multiple threads at the same time
-             */
+             *//*
             INSTANCE ?: createDatabase(context).also { INSTANCE = it}
         }
         private fun createDatabase(context: Context) =
@@ -30,5 +28,5 @@ abstract class ArticleDatabase : RoomDatabase(){
                 ArticleDatabase::class.java,
                 "articles.db"
             ).build()
-    }
+    }*/
 }

@@ -4,10 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="tech.danielwaiguru.flexnews.ui.views.fragments.FavoriteNewsFragment">
-
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/FavoriteNewsRecyclerView"
+        android:id="@+id/favoriteNewsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
