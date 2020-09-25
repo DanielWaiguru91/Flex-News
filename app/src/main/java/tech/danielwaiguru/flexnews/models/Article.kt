@@ -1,15 +1,13 @@
 package tech.danielwaiguru.flexnews.models
 
 import android.os.Parcelable
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import kotlinx.android.parcel.Parcelize
 import tech.danielwaiguru.flexnews.database.Converters
-import java.io.Serializable
 
-@Entity(tableName = "articles")
+@Entity(tableName = "article")
 @TypeConverters(Converters::class)
 @Parcelize
 data class Article(
@@ -19,7 +17,6 @@ data class Article(
     val content: String,
     val description: String,
     val publishedAt: String,
-    @Embedded
     val source: Source,
     val title: String,
     val url: String,
