@@ -30,7 +30,7 @@ interface NewsApiService {
         @Query("q")
         query :String,
         @Query("page")
-        pageNum: Int = 1,
+        pageNum: Int,
         @Query("api_key")
         api_key: String = API_KEY
     ): NewsResponse

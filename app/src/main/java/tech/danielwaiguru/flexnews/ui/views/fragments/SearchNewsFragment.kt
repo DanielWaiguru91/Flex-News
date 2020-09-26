@@ -1,24 +1,28 @@
 package tech.danielwaiguru.flexnews.ui.views.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search_news.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import tech.danielwaiguru.flexnews.R
+import tech.danielwaiguru.flexnews.adapters.SearchNewsAdapter
+import tech.danielwaiguru.flexnews.ui.viewmodels.SearchNewsViewModel
 
-
-/**
- * A simple [Fragment] subclass.
- */
+@AndroidEntryPoint
 class SearchNewsFragment : Fragment() {
-
+    private val searchViewModel by viewModels<SearchNewsViewModel>()
+    private val searchAdapter: SearchNewsAdapter by lazy {
+        SearchNewsAdapter()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +45,9 @@ class SearchNewsFragment : Fragment() {
                 }
             }
         }
+        searchViewModel.searchedNews.observe(viewLifecycleOwner, {
+            searchAdapter.submitList(it)
+        })
     }
 
 }

@@ -12,7 +12,8 @@ class NewsPagingSource(private val apiService: NewsApiService, private val query
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         val position = params.key ?: PAGE_INDEX
         return try {
-            val response = apiService.trendingNews(pageNum = position).articles
+            val response = apiService
+                .searchNews(query = query, pageNum = position).articles
             LoadResult.Page(
                 data = response,
                 prevKey = if (position == PAGE_INDEX) null else position - 1,

@@ -36,4 +36,6 @@ class SearchNewsAdapter: PagingDataAdapter<Article, SearchNewsAdapter.SearchView
             }
         }
     }
+    internal fun submitList(newsList: List<Article>){
+    }
 }
