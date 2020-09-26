@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_search_news.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import tech.danielwaiguru.flexnews.R
@@ -31,6 +32,7 @@ class SearchNewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        updateSearchQuery()
         searchJob?.cancel()
         searchViewModel.searchedNews.observe(viewLifecycleOwner, { pagingData ->
             searchJob = lifecycleScope.launch {
@@ -38,5 +40,11 @@ class SearchNewsFragment : Fragment() {
             }
         })
     }
-
+    private fun updateSearchQuery(){
+        etSearch.text.trim().let {
+            if (it.isNotEmpty()){
+                searchViewModel.setQuery(it.toString())
+            }
+        }
+    }
 }
