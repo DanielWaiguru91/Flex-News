@@ -1,11 +1,9 @@
 package tech.danielwaiguru.flexnews.ui.viewmodels
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.paging.cachedIn
+import kotlinx.coroutines.Dispatchers
 import tech.danielwaiguru.flexnews.repositories.NewsRepository
 
 class SearchNewsViewModel
@@ -27,6 +25,6 @@ class SearchNewsViewModel
         queryValue.value = query
     }
     val searchedNews = queryValue.switchMap {
-        repository.searchNews(it).cachedIn(viewModelScope)
+        repository.searchNews(it).cachedIn(viewModelScope).asLiveData(Dispatchers.Main)
     }
 }

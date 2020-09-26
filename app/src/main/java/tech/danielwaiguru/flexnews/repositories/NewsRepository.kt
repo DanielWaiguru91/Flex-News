@@ -2,7 +2,6 @@ package tech.danielwaiguru.flexnews.repositories
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.liveData
 import tech.danielwaiguru.flexnews.common.Constants
 import tech.danielwaiguru.flexnews.common.Constants.MAX_SIZE
 import tech.danielwaiguru.flexnews.database.ArticleDao
@@ -24,6 +23,6 @@ class NewsRepository(
                 pageSize = Constants.NETWORK_PAGE_SIZE,
                 maxSize = MAX_SIZE, enablePlaceholders = false),
             pagingSourceFactory = { NewsPagingSource(apiService, query) }
-        ).liveData
+        ).flow
 
 }
