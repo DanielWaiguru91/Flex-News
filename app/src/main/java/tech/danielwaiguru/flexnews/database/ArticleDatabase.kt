@@ -17,9 +17,6 @@ abstract class ArticleDatabase : RoomDatabase(){
 
         operator fun invoke(context: Context) = INSTANCE ?: synchronized(LOCK)
         {
-            *//**
-             * Not accessible by multiple threads at the same time
-             *//*
             INSTANCE ?: createDatabase(context).also { INSTANCE = it}
         }
         private fun createDatabase(context: Context) =
