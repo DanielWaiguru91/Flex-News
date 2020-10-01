@@ -39,7 +39,6 @@ class NewsAdapter(private val listener: ArticleClickListener) :
         holder.articleDescription.text = article.description
         Picasso.get().load(article.urlToImage)
             .error(R.drawable.ic_broken_image)
-            .centerCrop()
             .into(holder.articleImage)
         holder.itemView.setOnClickListener {
             listener.onArticleClicked(article)
