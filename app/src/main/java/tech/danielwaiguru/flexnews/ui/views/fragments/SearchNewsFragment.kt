@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search_news.*
 import kotlinx.coroutines.Job
 import tech.danielwaiguru.flexnews.R
+import tech.danielwaiguru.flexnews.adapters.ArticleLoadStateAdapter
 import tech.danielwaiguru.flexnews.adapters.SearchAdapter
 import tech.danielwaiguru.flexnews.ui.viewmodels.SearchNewsViewModel
 
@@ -30,6 +31,7 @@ class SearchNewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
         updateSearchQuery()
         searchJob?.cancel()
         searchViewModel.searchedNews.observe(viewLifecycleOwner, { pagingData ->
@@ -42,5 +44,11 @@ class SearchNewsFragment : Fragment() {
                 searchViewModel.setQuery(it.toString())
             }
         }
+    }
+    private fun setupRecyclerView() = searchNewsRecyclerView.apply {
+        adapter = searchAdapter.withLoadStateHeaderAndFooter(
+            header = ArticleLoadStateAdapter { searchAdapter.retry() },
+            footer = ArticleLoadStateAdapter { searchAdapter.retry()}
+        )
     }
 }

@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.load_state_footer.view.*
 import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.utils.visible
 
-class ArticleLoadStateAdapter: LoadStateAdapter<MainViewHolder>() {
+class ArticleLoadStateAdapter(private val retry: () -> Unit): LoadStateAdapter<MainViewHolder>() {
     override fun onBindViewHolder(holder: MainViewHolder, loadState: LoadState) {
         holder.itemView.apply {
             when (loadState){
@@ -20,6 +20,9 @@ class ArticleLoadStateAdapter: LoadStateAdapter<MainViewHolder>() {
                     retryButton.visible()
                 }
             }
+            retryButton.setOnClickListener {
+                retry.invoke()
+            }
         }
     }
 
@@ -27,5 +30,8 @@ class ArticleLoadStateAdapter: LoadStateAdapter<MainViewHolder>() {
         return MainViewHolder(LayoutInflater.from(parent.context).inflate(
             R.layout.load_state_footer, parent, false
         ))
+    }
+    interface RetryClickListener {
+        fun onRetryButtonClick()
     }
 }
