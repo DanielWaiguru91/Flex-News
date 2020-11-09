@@ -7,35 +7,33 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_trending_news.*
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import tech.danielwaiguru.flexnews.R
-import tech.danielwaiguru.flexnews.adapters.NewsAdapter
-import tech.danielwaiguru.flexnews.models.Article
+import tech.danielwaiguru.flexnews.adapters.ArticleLoadStateAdapter
+import tech.danielwaiguru.flexnews.adapters.MainNewsAdapter
 import tech.danielwaiguru.flexnews.networking.NetworkStatusChecker
-import tech.danielwaiguru.flexnews.utils.gone
+import tech.danielwaiguru.flexnews.ui.viewmodels.NewsViewModel
 import tech.danielwaiguru.flexnews.utils.toast
-import tech.danielwaiguru.flexnews.utils.visible
-import tech.danielwaiguru.flexnews.viewmodels.NewsViewModel
 
 @AndroidEntryPoint
-class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
-    private val viewModel: NewsViewModel by viewModels()
+class TrendingNewsFragment : Fragment(){
+    private val newsViewModel: NewsViewModel by viewModels()
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))
     }
     private val newsAdapter by lazy {
-        NewsAdapter(this)
+        MainNewsAdapter()
     }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_trending_news, container, false)
     }
 
@@ -43,52 +41,35 @@ class TrendingNewsFragment : Fragment(), NewsAdapter.ArticleClickListener{
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
         getAllNews()
-        viewModel.trendingNews.observe(viewLifecycleOwner, Observer {
-            onArticleListReceived(it)
-        })
-        viewModel.toast.observe(viewLifecycleOwner, Observer {
+        newsViewModel.toast.observe(viewLifecycleOwner){
             if (it != null){
                 requireActivity().toast(it)
             }
-        })
+        }
     }
 
     private fun setUpRecyclerView(){
         TrendingNewsRecyclerView.apply {
-            adapter = newsAdapter
+            adapter = newsAdapter.withLoadStateHeaderAndFooter(
+                header = ArticleLoadStateAdapter { newsAdapter.retry() },
+                footer = ArticleLoadStateAdapter { newsAdapter.retry() }
+            )
             layoutManager = LinearLayoutManager(activity)
         }
 
     }
     private fun getAllNews(){
-        PaginationProgressBar.visible()
         networkStatusChecker.performIfConnectedToInternet(::hasNoInternetConnection) {
-            viewModel.fetchTrendingNews()
+            lifecycleScope.launch {
+                newsViewModel.fetchNews().collectLatest {
+                    newsAdapter.submitData(it)
+                }
+            }
         }
     }
     private fun hasNoInternetConnection(){
         view?.let {
             requireActivity().toast("No connection")
-            PaginationProgressBar.gone()
-        }
-    }
-    private fun onArticleListReceived(articles: List<Article>){
-        PaginationProgressBar.gone()
-        checkArticlesList(articles)
-        onArticleReceived(articles)
-    }
-    private fun checkArticlesList(articles: List<Article>){
-        if (articles.isEmpty()) noData.visible() else noData.gone()
-    }
-    private fun onArticleReceived(articles: List<Article>){
-        newsAdapter.setData(articles)
-    }
-
-    override fun onArticleClicked(article: Article) {
-        view?.let {
-            val action = TrendingNewsFragmentDirections
-                .actionTrendingNewsFragmentToArticleFragment(article)
-            it.findNavController().navigate(action)
         }
     }
 }

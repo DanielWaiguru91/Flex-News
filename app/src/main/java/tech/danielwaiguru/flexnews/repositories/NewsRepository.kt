@@ -9,16 +9,13 @@ import tech.danielwaiguru.flexnews.common.Constants.NETWORK_PAGE_SIZE
 import tech.danielwaiguru.flexnews.database.ArticleDao
 import tech.danielwaiguru.flexnews.models.Article
 import tech.danielwaiguru.flexnews.networking.NewsApiService
-import tech.danielwaiguru.flexnews.networking.RemoteNewsApi
 import tech.danielwaiguru.flexnews.paging.NewsPagingSource
 import tech.danielwaiguru.flexnews.paging.SearchPagingSource
 
 class NewsRepository(
-    private val remoteNewsApi: RemoteNewsApi,
     private val localDataSource: ArticleDao,
     private val apiService: NewsApiService) {
     fun getFavArticles() = localDataSource.getNewsArticles()
-    suspend fun getTrendingNews(pageNumber: Int)  = remoteNewsApi.getTrendingNews(pageNumber)
     suspend fun saveArticle(article: Article) = localDataSource.insertNewsArticle(article)
     fun searchNews(query: String) =
        Pager(
