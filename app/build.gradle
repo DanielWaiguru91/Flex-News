@@ -106,4 +106,6 @@ dependencies {
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
     //Pagination
     implementation "androidx.paging:paging-runtime:$paging_version"
+    //Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }

@@ -51,7 +51,7 @@ class TrendingNewsFragment : Fragment(){
     private fun setUpRecyclerView(){
         TrendingNewsRecyclerView.apply {
             adapter = newsAdapter.withLoadStateHeaderAndFooter(
-                header = ArticleLoadStateAdapter { newsAdapter.retry() },
+                header = ArticleLoadStateAdapter(newsAdapter::retry),
                 footer = ArticleLoadStateAdapter { newsAdapter.retry() }
             )
             layoutManager = LinearLayoutManager(activity)
