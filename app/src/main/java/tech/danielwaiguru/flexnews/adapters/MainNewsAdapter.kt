@@ -42,7 +42,7 @@ class MainNewsAdapter: PagingDataAdapter<Article, MainViewHolder>(COMPARATOR) {
             }
 
             override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-                return oldItem.hashCode() == newItem.hashCode()
+                return oldItem == newItem
             }
         }
     }
