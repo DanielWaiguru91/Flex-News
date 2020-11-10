@@ -8,12 +8,14 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.article_item.view.*
 import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.models.Article
+import timber.log.Timber
 
 class MainNewsAdapter: PagingDataAdapter<Article, MainViewHolder>(COMPARATOR) {
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         getItem(position)?.let {article ->
+            Timber.d(article.url)
             holder.itemView.apply {
-                Picasso.get().load(article.url)
+                Picasso.get().load(article.urlToImage)
                     .error(R.drawable.ic_broken_image)
                     .into(articleImage)
                 articleTitle.text = article.title
