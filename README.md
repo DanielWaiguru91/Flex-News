@@ -6,9 +6,10 @@ Flex News is a news app to keep users informed every day by displaying to trendi
 ### Data source
 * https://newsapi.org web service
 
-#### Key Technologies used
+#### Key Components used
 * MVVM architecture
 * Kotlin coroutines
 * Room Persistence library
 * Retrofit2 to make network request
 * Navigation Components
+* Pagination 

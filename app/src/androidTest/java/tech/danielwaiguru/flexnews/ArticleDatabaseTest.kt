@@ -11,8 +11,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
-import tech.danielwaiguru.flexnews.data.ArticleDao
-import tech.danielwaiguru.flexnews.data.ArticleDatabase
+import tech.danielwaiguru.flexnews.database.ArticleDao
+import tech.danielwaiguru.flexnews.database.ArticleDatabase
 import tech.danielwaiguru.flexnews.models.Article
 import tech.danielwaiguru.flexnews.models.Source
 

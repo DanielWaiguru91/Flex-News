@@ -4,20 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.SearchNewsFragment">
+    tools:context="tech.danielwaiguru.flexnews.ui.views.fragments.SearchNewsFragment">
 
     <EditText
         android:id="@+id/etSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search..."
+        android:hint="@string/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="false"
+        android:inputType="text" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/SearchNewsRecyclerView"
+        android:id="@+id/searchNewsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingBottom="50dp"

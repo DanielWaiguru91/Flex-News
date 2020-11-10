@@ -4,26 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ArticleFragment">
-
-
+    tools:context=".ui.views.fragments.ArticleFragment">
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-
-
     </WebView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/favoriteFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fabSize="normal"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="@dimen/margin_bottom_large"
+        android:layout_marginEnd="@dimen/margin_end_large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:clickable="true"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_baseline" />
+        android:src="@drawable/ic_baseline"
+        android:tint="@color/colorWhite"
+        android:focusable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

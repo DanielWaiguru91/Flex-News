@@ -1,6 +1,5 @@
 package tech.danielwaiguru.flexnews.networking
 
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 import tech.danielwaiguru.flexnews.BuildConfig
@@ -12,17 +11,16 @@ import tech.danielwaiguru.flexnews.models.response.NewsResponse
 interface NewsApiService {
     companion object {
         const val API_KEY = BuildConfig.key
-        const val BASE_URL = "https://newsapi.org"
     }
-    @GET("v2/top-headlines")
+    @GET("/v2/top-headlines")
     suspend fun trendingNews(
         @Query("country")
         countryCode: String = "us",
         @Query("page")
-        pageNum: Int = 1,
+        pageNum: Int,
         @Query("apiKey")
         apiKey: String = API_KEY
-    ):Response<NewsResponse>
+    ):NewsResponse
 
     /**
      * News search
@@ -30,10 +28,10 @@ interface NewsApiService {
     @GET("/v2/everything")
     suspend fun searchNews(
         @Query("q")
-        queryEveryThing :String,
+        query :String,
         @Query("page")
-        pageNum: Int = 1,
+        pageNum: Int,
         @Query("api_key")
         api_key: String = API_KEY
-    ): Response<NewsResponse>
+    ): NewsResponse
 }

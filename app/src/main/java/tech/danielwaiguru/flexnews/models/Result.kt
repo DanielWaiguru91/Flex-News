@@ -1,10 +1,8 @@
 package tech.danielwaiguru.flexnews.models
 
-sealed class Result<T>(
-    val data: T? = null,
-    val message: String? = null
-) {
-    class Success<T>(data: T): Result<T>(data)
-    class Failure<T>(message: String, data: T? = null): Result<T>(data, message)
-    class Loading<T>: Result<T>()
-}
+
+sealed class Result<out T: Any>
+
+data class Success<out T: Any>(val data: List<Article>): Result<T>()
+
+data class Failure(val error: String): Result<Nothing>()
