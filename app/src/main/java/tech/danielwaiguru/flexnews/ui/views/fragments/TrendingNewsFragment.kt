@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_trending_news.*
@@ -16,6 +17,7 @@ import kotlinx.coroutines.launch
 import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.adapters.ArticleLoadStateAdapter
 import tech.danielwaiguru.flexnews.adapters.MainNewsAdapter
+import tech.danielwaiguru.flexnews.models.ArticleClickListener
 import tech.danielwaiguru.flexnews.networking.NetworkStatusChecker
 import tech.danielwaiguru.flexnews.ui.viewmodels.NewsViewModel
 import tech.danielwaiguru.flexnews.utils.toast
@@ -27,7 +29,13 @@ class TrendingNewsFragment : Fragment(){
         NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))
     }
     private val newsAdapter by lazy {
-        MainNewsAdapter()
+        MainNewsAdapter(
+            ArticleClickListener {
+                val action = TrendingNewsFragmentDirections
+                    .actionTrendingNewsFragmentToArticleFragment(it)
+                findNavController().navigate(action)
+            }
+        )
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +62,7 @@ class TrendingNewsFragment : Fragment(){
                 header = ArticleLoadStateAdapter(newsAdapter::retry),
                 footer = ArticleLoadStateAdapter { newsAdapter.retry() }
             )
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(requireActivity())
         }
 
     }

@@ -1,16 +1,18 @@
 package tech.danielwaiguru.flexnews.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.article_item.view.*
 import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.models.Article
 
-class SearchAdapter: PagingDataAdapter<Article, MainViewHolder>(ARTICLE_COMPARATOR) {
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+class SearchAdapter: PagingDataAdapter<Article, SearchAdapter.SearchViewHolder>(ARTICLE_COMPARATOR) {
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val article = getItem(position)
         if (article != null){
             holder.itemView.apply {
@@ -26,13 +28,14 @@ class SearchAdapter: PagingDataAdapter<Article, MainViewHolder>(ARTICLE_COMPARAT
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        return MainViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
+        return SearchViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.article_item, parent, false
             )
         )
     }
+    class SearchViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
     companion object {
         val ARTICLE_COMPARATOR = object :DiffUtil.ItemCallback<Article>(){
             override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
