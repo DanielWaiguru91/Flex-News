@@ -8,7 +8,6 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fav_news_item.view.*
 import tech.danielwaiguru.flexnews.R
 import tech.danielwaiguru.flexnews.models.Article
-import tech.danielwaiguru.flexnews.utils.ArticleClickListener
 
 class FavoriteNewsAdapter(private val listener: ArticleClickListener):
     RecyclerView.Adapter<FavoriteNewsAdapter.FavoriteViewHolder>() {
@@ -29,7 +28,9 @@ class FavoriteNewsAdapter(private val listener: ArticleClickListener):
             favArticleDescription.text = favArticle.description
             favArticleSource.text = favArticle.author
             favArticlePublishedAt.text = favArticle.publishedAt
-            listener.onArticleItemClicked(favArticle)
+            setOnClickListener {
+                listener.onArticleItemClicked(favArticle)
+            }
         }
     }
     override fun getItemCount(): Int = favArticles.size
@@ -37,7 +38,11 @@ class FavoriteNewsAdapter(private val listener: ArticleClickListener):
         favArticles.apply {
             clear()
             addAll(articles)
+            notifyDataSetChanged()
         }
     }
     class FavoriteViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    interface ArticleClickListener {
+        fun onArticleItemClicked(article: Article)
+    }
 }
