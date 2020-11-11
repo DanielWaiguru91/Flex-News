@@ -28,10 +28,10 @@ interface NewsApiService {
     @GET("/v2/everything")
     suspend fun searchNews(
         @Query("q")
-        query :String,
+        query :String = "bitcoin",
         @Query("page")
         pageNum: Int,
-        @Query("api_key")
+        @Query("apiKey")
         api_key: String = API_KEY
     ): NewsResponse
 }

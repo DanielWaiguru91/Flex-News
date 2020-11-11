@@ -60,7 +60,7 @@ class TrendingNewsFragment : Fragment(){
     }
     private fun getAllNews(){
         networkStatusChecker.performIfConnectedToInternet(::hasNoInternetConnection) {
-            lifecycleScope.launch {
+            viewLifecycleOwner.lifecycleScope.launch {
                 newsViewModel.fetchNews().collectLatest {
                     newsAdapter.submitData(it)
                 }

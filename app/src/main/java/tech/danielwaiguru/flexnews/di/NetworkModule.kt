@@ -16,7 +16,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(ApplicationComponent::class)
 object NetworkModule {
-    const val BASE_URL = "https://newsapi.org"
+    private const val BASE_URL = "https://newsapi.org"
     @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
