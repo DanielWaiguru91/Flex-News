@@ -21,7 +21,13 @@
         tools:layout="@layout/fragment_favorite_news" >
         <action
             android:id="@+id/action_favoriteNewsFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            app:destination="@id/articleFragment"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/searchNewsFragment"
@@ -30,7 +36,12 @@
         tools:layout="@layout/fragment_search_news" >
         <action
             android:id="@+id/action_searchNewsFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            app:destination="@id/articleFragment"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/trendingNewsFragment"
@@ -38,6 +49,11 @@
         android:label="TrendingNewsFragment" >
         <action
             android:id="@+id/action_trendingNewsFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            app:destination="@id/articleFragment"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 </navigation>
