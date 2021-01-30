@@ -107,4 +107,5 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
     //Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 }
