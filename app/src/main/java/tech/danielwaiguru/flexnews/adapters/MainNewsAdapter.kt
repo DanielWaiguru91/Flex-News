@@ -53,4 +53,8 @@ class MainNewsAdapter(private val listener:ArticleClickListener):
             }
         }
     }
+    interface ArticleClicksListener {
+        fun onArticleClickListener(article: Article)
+        fun onLikeClickListener(article: Article)
+    }
 }
